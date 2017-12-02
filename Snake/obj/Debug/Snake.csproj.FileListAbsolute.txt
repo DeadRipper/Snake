@@ -8,3 +8,5 @@ C:\Users\DeathWish\Documents\Visual Studio 2017\Projects\Snake\Snake\obj\Debug\S
 C:\Users\DeathWish\Documents\Visual Studio 2017\Projects\Snake\Snake\obj\Debug\Snake.csproj.CoreCompileInputs.cache
 C:\Users\DeathWish\Documents\Visual Studio 2017\Projects\Snake\Snake\obj\Debug\Snake.exe
 C:\Users\DeathWish\Documents\Visual Studio 2017\Projects\Snake\Snake\obj\Debug\Snake.pdb
+C:\Users\DeathWish\Documents\Visual Studio 2017\Projects\Snake\Snake\obj\Debug\Snake.Form2.resources
+C:\Users\DeathWish\Documents\Visual Studio 2017\Projects\Snake\Snake\obj\Debug\Snake.Змейка.resources

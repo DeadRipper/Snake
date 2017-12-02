@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace Snake
 {
-    public partial class Form1 : Form
+    public partial class Form2 : Form
     {
         private List<Circle> Snake = new List<Circle>();
         private Circle food = new Circle();
-        public Form1()
+        public Form2()
         {
             InitializeComponent();
 
@@ -27,14 +27,13 @@ namespace Snake
 
             StartGame();
         }
-
         private void StartGame()
         {
             lblGameOver.Visible = false;
             new Settings();
 
             Snake.Clear();
-            Circle head = new Circle {X=10, Y=5};
+            Circle head = new Circle { X = 10, Y = 5 };
             Snake.Add(head);
 
             libScore.Text = Settings.Score.ToString();
@@ -79,7 +78,7 @@ namespace Snake
         private void pbCanvas_Paint(object sender, PaintEventArgs e)
         {
             Graphics canvas = e.Graphics;
-            ControlPaint.DrawBorder(e.Graphics, this.pbCanvas.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
+
             if (!Settings.GameOver)
             {
                 Brush snakeColor;
@@ -100,8 +99,8 @@ namespace Snake
             else
             {
                 string gameOver = "Well done! \nScore:" + Settings.Score + "\nPress Enter to try again";
-                lblGameOver.Text = gameOver;
-                lblGameOver.Visible = true;
+                lblGameOver1.Text = gameOver;
+                lblGameOver1.Visible = true;
             }
         }
 
@@ -129,19 +128,33 @@ namespace Snake
                     int maxXPos = pbCanvas.Size.Width / Settings.Width;
                     int maxYPos = pbCanvas.Size.Width / Settings.Height;
 
-                    if (Snake[i].X < 0 || Snake[i].Y < 0 || Snake[i].X >= maxXPos || Snake[i].Y >= maxYPos)
+                    //if (Snake[i].X < 0 || Snake[i].Y < 0 || Snake[i].X >= maxXPos || Snake[i].Y >= maxYPos)
+                    if (Snake[i].X < 0)
                     {
-                        Die();
+                        Snake[i].X = maxXPos;
+                    }
+                    else if (Snake[i].Y < 0)
+                    {
+                        Snake[i].Y = maxYPos;
+                    }
+                    else if (Snake[i].X >= maxXPos)
+                    {
+                        Snake[i].X = 0;
+                    }
+                    else if (Snake[i].Y >=maxYPos)
+                    {
+                        Snake[i].Y = 0;
                     }
 
-                    for(int j = 1;j<Snake.Count;j++)
+
+                    for (int j = 1; j < Snake.Count; j++)
                     {
                         if (Snake[i].X == Snake[j].X && Snake[i].Y == Snake[j].Y)
                         {
-                           Die();
+                            Die();
                         }
                     }
-                    if (Snake[0].X == food.X && Snake[0].Y==food.Y)
+                    if (Snake[0].X == food.X && Snake[0].Y == food.Y)
                     {
                         Eat();
                     }
@@ -153,7 +166,7 @@ namespace Snake
                 }
             }
         }
-        
+
         private void Eat()
         {
             Circle food = new Circle();
@@ -183,6 +196,5 @@ namespace Snake
         {
             Input.ChangeState(e.KeyCode, false);
         }
-
     }
 }
